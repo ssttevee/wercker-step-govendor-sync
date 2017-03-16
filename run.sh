@@ -28,7 +28,7 @@ if [ ! -e vendor/vendor.json ]; then
 fi
 
 # restore vendor cache and sync
-if [ -e "$WERCKER_CACHE_DIR"/"$WERCKER_STEP_NAME"/vendor/* ]; then
+if [ "$(ls -A "$WERCKER_CACHE_DIR"/"$WERCKER_STEP_NAME"/vendor/)" ]; then
 	cp -r "$WERCKER_CACHE_DIR"/"$WERCKER_STEP_NAME"/vendor/* vendor/
 fi
 
