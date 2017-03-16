@@ -12,7 +12,9 @@ if [ ! -d "$WERCKER_CACHE_DIR"/"$WERCKER_STEP_NAME" ]; then
 fi
 
 # install govendor or copy from cache
-cp "$WERCKER_CACHE_DIR"/"$WERCKER_STEP_NAME"/bin/* "$GOPATH"/bin/
+if [ -e "$WERCKER_CACHE_DIR"/"$WERCKER_STEP_NAME"/bin/govendor ]; then
+	cp "$WERCKER_CACHE_DIR"/"$WERCKER_STEP_NAME"/bin/govendor "$GOPATH"/bin/
+fi
 
 if ! which govendor; then
 	go get -u github.com/kardianos/govendor
@@ -26,7 +28,9 @@ if [ ! -e vendor/vendor.json ]; then
 fi
 
 # restore vendor cache and sync
-cp -r "$WERCKER_CACHE_DIR"/"$WERCKER_STEP_NAME"/vendor/* vendor/
+if [ -e "$WERCKER_CACHE_DIR"/"$WERCKER_STEP_NAME"/vendor/* ]; then
+	cp -r "$WERCKER_CACHE_DIR"/"$WERCKER_STEP_NAME"/vendor/* vendor/
+fi
 
 govendor sync
 
