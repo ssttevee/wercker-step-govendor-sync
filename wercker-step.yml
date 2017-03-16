@@ -1,0 +1,3 @@
+name: govendor-sync
+version: 0.1.0
+description: Syncs and caches golang vendor files

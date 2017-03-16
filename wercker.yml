@@ -1,0 +1,9 @@
+box: wercker/default
+
+build:
+  steps:
+    - shellcheck
+    
+    - script:
+        name: copy files
+        code: cp run.sh wercker-step.yml $WERCKER_OUTPUT_DIR
